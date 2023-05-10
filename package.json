@@ -1,7 +1,7 @@
 {
-  "name": "webpack-project-template",
+  "name": "battleship",
   "version": "1.0.0",
-  "description": "An ongoing repository for starting a project with webpack.",
+  "description": "A game of battleship.",
   "private": true,
   "scripts": {
     "test": "jest",
