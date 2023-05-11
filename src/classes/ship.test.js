@@ -1,10 +1,9 @@
 /* eslint-disable no-undef */
 import Ship from "./ship";
 
-test("test ship takes a hit", () => {
+test("test ship hp goes down on hit", () => {
   const testShip = new Ship(4);
-  testShip.hit();
-  expect(testShip.hp).toEqual(3);
+  expect(testShip.hit()).toEqual(3);
 });
 
 test("test ship 2 is sunk", () => {
@@ -12,5 +11,6 @@ test("test ship 2 is sunk", () => {
   testShip2.hit();
   testShip2.hit();
   testShip2.hit();
-  expect(testShip2.isSunk).toBeTruthy();
+  expect(testShip2.isSunk()).toBeTruthy();
 });
+
