@@ -1,7 +1,7 @@
 export default class Gameboard {
   constructor() {
     this.placedShips = [];
-    this.hits = [];
+    this.attacks = [];
   }
 
   placeShip(type, coords) {
@@ -19,21 +19,29 @@ export default class Gameboard {
   }
 
   receiveAttack(coord) {
-    this.hits.push(coord);
-    this.recordShipAttack(coord);
-    return this.hits;
+    const wasHit = this.recordShipAttack(coord);
+    this.attacks.push({ coord, status: wasHit ? 'hit' : 'miss' });
+    return this.attacks;
   }
 
   recordShipAttack(coord) {
+    let wasHit = false;
     this.placedShips = this.placedShips.map((ship) => {
       const hitIndex = ship.coords.findIndex(
         (shipCoord) => shipCoord === coord
       );
       if (hitIndex !== -1) {
+        wasHit = true;
         return Gameboard.updateShipHit(ship, hitIndex);
       }
       return ship;
     });
+    return wasHit;
+  }
+
+  getHitStatus(coord) {
+    const attack = this.attacks.find((hit) => hit.coord === coord);
+    return attack ? attack.status : null;
   }
 
   static updateShipHit(ship, hitIndex) {
@@ -44,11 +52,11 @@ export default class Gameboard {
 
   getShipHits(shipType) {
     const theShip = this.placedShips.find((ship) => ship.type === shipType);
-    console.log(theShip.hits);
     return theShip.hits;
   }
 
   getAllHits() {
-    return this.hits;
+    return this.attacks;
   }
+
 }

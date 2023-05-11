@@ -1,1 +1,1 @@
-# Webpack with Jest Project Template
+# BATTLESHIP
