@@ -18,7 +18,14 @@ export default class Gameboard {
     return foundShip.coords;
   }
 
+  isCoordinateAttacked(coord) {
+    return this.attacks.some((attack) => attack.coord === coord)
+  }
+
   receiveAttack(coord) {
+    if (this.isCoordinateAttacked(coord)) {
+      return false
+    }
     const wasHit = this.recordShipAttack(coord);
     this.attacks.push({ coord, status: wasHit ? 'hit' : 'miss' });
     return this.attacks;
