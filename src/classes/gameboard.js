@@ -25,18 +25,30 @@ export default class Gameboard {
   }
 
   recordShipAttack(coord) {
-    this.placedShips.forEach((ship) => {
-      for (let i = 0; i <= ship.coords; i += 1) {
-        if (ship.coords[i] === coord) {
-          ship.hits[i] = 'hit';
-        }
+    this.placedShips = this.placedShips.map((ship) => {
+      const hitIndex = ship.coords.findIndex(
+        (shipCoord) => shipCoord === coord
+      );
+      if (hitIndex !== -1) {
+        return Gameboard.updateShipHit(ship, hitIndex);
       }
+      return ship;
     });
+  }
+
+  static updateShipHit(ship, hitIndex) {
+    const updatedHits = [...ship.hits];
+    updatedHits[hitIndex] = 'hit';
+    return { ...ship, hits: updatedHits };
   }
 
   getShipHits(shipType) {
     const theShip = this.placedShips.find((ship) => ship.type === shipType);
-    console.log(theShip);
-    return theShip.shipHits;
+    console.log(theShip.hits);
+    return theShip.hits;
+  }
+
+  getAllHits() {
+    return this.hits;
   }
 }
