@@ -33,6 +33,7 @@
     "webpack-dev-server": "^4.13.1"
   },
   "dependencies": {
+    "domweaver": "^1.0.0",
     "normalize.css": "^8.0.1"
   }
 }
