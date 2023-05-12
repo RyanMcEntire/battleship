@@ -19,12 +19,12 @@ export default class Gameboard {
   }
 
   isCoordinateAttacked(coord) {
-    return this.attacks.some((attack) => attack.coord === coord)
+    return this.attacks.some((attack) => attack.coord === coord);
   }
 
   receiveAttack(coord) {
     if (this.isCoordinateAttacked(coord)) {
-      return false
+      return false;
     }
     const wasHit = this.recordShipAttack(coord);
     this.attacks.push({ coord, status: wasHit ? 'hit' : 'miss' });
@@ -65,5 +65,4 @@ export default class Gameboard {
   getAllHits() {
     return this.attacks;
   }
-
 }

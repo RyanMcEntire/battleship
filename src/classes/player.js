@@ -8,10 +8,14 @@ export default class Player {
     return this;
   }
 
-  static decideAttack() {
+  static decideAttack(gameboard) {
     const letters = 'ABCDEFGHIJ';
     const char = letters.charAt(Math.floor(Math.random() * letters.length));
     const num = Math.floor(Math.random() * letters.length);
-    return [`${char + num}`];
+    if (gameboard.isCoordinateAttacked(`${char + num}`)) {
+      this.decideAttack()
+    } 
+    return [`${char + num}`]
+    ;
   }
 }
