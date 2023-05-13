@@ -2,7 +2,8 @@
   border: solid 1px gray;
 } */
 
-.player-board {
+.player-board,
+.opponent-board {
   display: grid;
   grid-template-columns: 1fr 10fr;
   grid-template-rows: 1fr 10fr;
@@ -10,6 +11,8 @@
   height: 20rem;
   margin-bottom: 3rem;
 }
+
+
 
 .grid-container {
   grid-column: 2;
