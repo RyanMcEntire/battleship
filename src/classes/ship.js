@@ -1,7 +1,11 @@
 export default class Ship {
-  constructor(length) {
-    this.length = length;
-    this.hp = length;
+  constructor(obj) {
+    const { [Object.keys(obj)[0]]: type } = obj;
+    const { [Object.keys(obj)[0]]: location } = obj;
+    this.type = type;
+    this.location = location;
+    this.length = this.location.length;
+    this.hp = this.location.length;
   }
 
   hit() {
