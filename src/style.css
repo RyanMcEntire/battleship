@@ -1,0 +1,45 @@
+/* * {
+  border: solid 1px gray;
+} */
+
+.player-board {
+  display: grid;
+  grid-template-columns: 1fr 10fr;
+  grid-template-rows: 1fr 10fr;
+  width: 20rem;
+  height: 20rem;
+  margin-bottom: 3rem;
+}
+
+.grid-container {
+  grid-column: 2;
+  grid-row: 2;
+  border: solid 1px blue;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+}
+
+.grid-container > div {
+  border: solid 1px red;
+}
+
+.letter-box {
+  display: grid;
+  grid-column: 1;
+  grid-row: 2;
+  grid-template-rows: repeat(10, 1fr);
+}
+
+.letter-box > div,
+.number-box > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.number-box {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-column: 2;
+  grid-row: 1;
+}

@@ -1,4 +1,6 @@
-import {buildPlayerGrid, buildOpponentGrid} from './ui/main-game-ui';
+import './style.css'
+import { buildPlayerBoard, buildOpponentBoard } from './ui/main-game-ui';
 
-buildPlayerGrid();
-buildOpponentGrid();
+buildPlayerBoard();
+buildOpponentBoard();
+
