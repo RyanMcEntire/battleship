@@ -1,6 +1,6 @@
-import Player from "../classes/player";
+import Player from '../classes/player';
 import Ship from '../classes/ship';
-import Gameboard from "../classes/gameboard";
+import Gameboard from '../classes/gameboard';
 
 const ships = {
   car: ['C3', 'D3', 'E3', 'F3', 'G3'],
@@ -10,6 +10,17 @@ const ships = {
   des: ['D7', 'E7'],
 };
 
-const player1 = new Player('Clowdy')
-const player2 = new Player('Computer')
+const p = new Player('Clowdy');
+const c = new Player('Computer');
+let currP = p;
 
+const pBoard = new Gameboard();
+const cBoard = new Gameboard();
+
+Object.entries(ships).forEach((ship) => {
+  pBoard.placeShip(new Ship(ship));
+});
+
+Object.entries(ships).forEach((ship) => {
+  cBoard.placeShip(new Ship(ship));
+});

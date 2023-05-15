@@ -4,12 +4,13 @@ export default class Gameboard {
     this.attacks = [];
   }
 
-  placeShip(type, coords) {
+  placeShip(ship) {
+    const { [Object.keys(ship)[0]]: coords } = ship;
     const shipHits = [];
     for (let i = 0; i < coords.length; i += 1) {
       shipHits.push('');
     }
-    this.placedShips.push({ type, coords, hits: shipHits });
+    this.placedShips.push({ ship, hits: shipHits });
     return this.placedShips;
   }
 
