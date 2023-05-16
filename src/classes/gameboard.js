@@ -5,12 +5,10 @@ export default class Gameboard {
   }
 
   placeShip(ship) {
-    const { [Object.keys(ship)[0]]: coords } = ship;
-    const shipHits = [];
-    for (let i = 0; i < coords.length; i += 1) {
-      shipHits.push('');
-    }
-    this.placedShips.push({ ship, hits: shipHits });
+    const shipName = ship.type;
+    const { coords } = ship;
+    const shipHits = new Array(coords.length).fill('');
+    this.placedShips.push({ ship, shipName, coords, hits: shipHits });
     return this.placedShips;
   }
 
@@ -34,15 +32,15 @@ export default class Gameboard {
 
   recordShipAttack(coord) {
     let wasHit = false;
-    this.placedShips = this.placedShips.map((ship) => {
-      const hitIndex = ship.coords.findIndex(
+    this.placedShips = this.placedShips.map((shipObj) => {
+      const hitIndex = shipObj.coords.findIndex(
         (shipCoord) => shipCoord === coord
       );
       if (hitIndex !== -1) {
         wasHit = true;
-        return Gameboard.updateShipHit(ship, hitIndex);
+        return Gameboard.updateShipHit(shipObj, hitIndex);
       }
-      return ship;
+      return shipObj;
     });
     return wasHit;
   }

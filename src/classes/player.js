@@ -8,7 +8,7 @@ export default class Player {
     return this;
   }
 
-  static decideAttack(gameboard) {
+  decideAttack(gameboard) {
     const letters = 'ABCDEFGHIJ';
     const char = letters.charAt(Math.floor(Math.random() * letters.length));
     const num = Math.floor(Math.random() * letters.length);

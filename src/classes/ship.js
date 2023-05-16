@@ -1,11 +1,10 @@
+/* eslint-disable prefer-destructuring */
 export default class Ship {
   constructor(obj) {
-    const { [Object.keys(obj)[0]]: type } = obj;
-    const { [Object.keys(obj)[0]]: location } = obj;
-    this.type = type;
-    this.location = location;
-    this.length = this.location.length;
-    this.hp = this.location.length;
+    this.type = Object.keys(obj)[0];
+    this.coords = obj[this.type];
+    this.length = this.coords.length;
+    this.hp = this.coords.length;
   }
 
   hit() {
