@@ -13,9 +13,8 @@ export default class Player {
     const char = letters.charAt(Math.floor(Math.random() * letters.length));
     const num = Math.floor(Math.random() * letters.length);
     if (gameboard.isCoordinateAttacked(`${char + num}`)) {
-      this.decideAttack()
-    } 
-    return [`${char + num}`]
-    ;
+      this.decideAttack(gameboard);
+    }
+    return `${char + num}`;
   }
 }

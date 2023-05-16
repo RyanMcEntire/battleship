@@ -18,7 +18,10 @@ export default class Gameboard {
   }
 
   isCoordinateAttacked(coord) {
-    return this.attacks.some((attack) => attack.coord === coord);
+    if (coord) {
+      return this.attacks.some((attack) => attack.coord === coord);
+    }
+    return false;
   }
 
   receiveAttack(coord) {

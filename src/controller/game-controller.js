@@ -34,8 +34,8 @@ export default function gameLoop() {
   sel().computerGrid.addEventListener('click', (e) => {
     const attack = e.target.className;
     p.launchAttack(cBoard, attack);
-    c.launchAttack(pBoard, c.decideAttack());
-    console.log('attacks on player', pBoard.getAllHits());
-    console.log('attacks on computer', cBoard.getAllHits());
+    c.launchAttack(pBoard, c.decideAttack(pBoard));
+    console.table('attacks on player', pBoard.getAllHits());
+    console.table('attacks on computer', cBoard.getAllHits());
   });
 }
