@@ -12,8 +12,6 @@
   margin-bottom: 3rem;
 }
 
-
-
 .grid-container {
   grid-column: 2;
   grid-row: 2;
@@ -45,4 +43,12 @@
   grid-template-columns: repeat(10, 1fr);
   grid-column: 2;
   grid-row: 1;
+}
+
+.hit {
+  background-color: orangered;
+}
+
+.miss {
+  background-color: blue;
 }

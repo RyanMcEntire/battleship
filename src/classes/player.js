@@ -4,8 +4,7 @@ export default class Player {
   }
 
   launchAttack(gameboard, coord) {
-    gameboard.receiveAttack(coord);
-    return this;
+    return gameboard.receiveAttack(coord) ? this : false;
   }
 
   decideAttack(gameboard) {

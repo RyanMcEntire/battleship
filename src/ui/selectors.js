@@ -3,7 +3,6 @@ function byClass(className) {
 }
 
 export default function sel() {
-  console.log(byClass('opponent-grid-container'))
   return {
     playerGrid: byClass('player-grid-container'),
     computerGrid: byClass('opponent-grid-container'),
