@@ -112,3 +112,12 @@
   height: 1rem;
   border: solid black 1px;
 }
+
+.input-container {
+  grid-row-start: 2;
+  display: flex;
+  gap: .3rem;
+  flex-direction: column;
+  width: 3rem;
+  align-self: center;
+}

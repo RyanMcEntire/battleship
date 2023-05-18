@@ -35,10 +35,19 @@ attachShips('CRUISER', 3);
 attachShips('SUBMARINE', 3);
 attachShips('DESTROYER', 2);
 
+const inputContainer = bp('div', 'input-container')
+  .addChild(
+    bp('input').addAttributes({
+      type: 'text',
+    })
+  )
+  .addChild(bp('button', 'input-button').addText('Place Ship'));
+
 newGameModal
   .addChild(placeShipsGrid)
   .addChild(rotateButton)
-  .addChild(shipChoiceContainer);
+  .addChild(shipChoiceContainer)
+  .addChild(inputContainer);
 
 export default function buildNewGameModal() {
   document.body.appendChild(newGameModal.build());
