@@ -52,3 +52,13 @@
 .miss {
   background-color: blue;
 }
+
+.logAttacks {
+  height: 2rem;
+}
+
+.win-modal {
+  height: 10rem;
+  width: 10rem;
+  
+}

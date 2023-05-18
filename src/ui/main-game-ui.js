@@ -20,8 +20,8 @@ function writeGrid(parent) {
   }
 }
 
-writeGrid(playerGridContainer, 'player');
-writeGrid(opponentGridContainer, 'opponent');
+writeGrid(playerGridContainer);
+writeGrid(opponentGridContainer);
 
 const letterBox = bp('div', 'letter-box');
 const numberBox = bp('div', 'number-box');
@@ -58,3 +58,4 @@ export function buildPlayerBoard() {
 export function buildOpponentBoard() {
   return document.body.appendChild(opponentBoard.build());
 }
+

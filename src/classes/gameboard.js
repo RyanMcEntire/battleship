@@ -12,6 +12,8 @@ export default class Gameboard {
     return this.placedShips;
   }
 
+  
+
   getShipLocation(shipType) {
     const foundShip = this.placedShips.find((ship) => ship.type === shipType);
     return foundShip.coords;
@@ -41,6 +43,7 @@ export default class Gameboard {
       );
       if (hitIndex !== -1) {
         wasHit = true;
+        shipObj.ship.hit();
         return Gameboard.updateShipHit(shipObj, hitIndex);
       }
       return shipObj;
@@ -56,6 +59,7 @@ export default class Gameboard {
   static updateShipHit(ship, hitIndex) {
     const updatedHits = [...ship.hits];
     updatedHits[hitIndex] = 'hit';
+
     return { ...ship, hits: updatedHits };
   }
 
@@ -66,5 +70,15 @@ export default class Gameboard {
 
   getAllHits() {
     return this.attacks;
+  }
+
+  isGameWon() {
+    let gameIsWon = true;
+    this.placedShips.forEach((place) => {
+      if (!place.ship.isSunk()) {
+        gameIsWon = false;
+      }
+    });
+    return gameIsWon;
   }
 }

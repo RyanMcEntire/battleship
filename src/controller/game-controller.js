@@ -2,6 +2,7 @@ import Player from '../classes/player';
 import Ship from '../classes/ship';
 import Gameboard from '../classes/gameboard';
 import sel from '../ui/selectors';
+import appendWinModal from '../ui/win-modal';
 
 const ships = {
   car: ['C3', 'D3', 'E3', 'F3', 'G3'],
@@ -32,24 +33,30 @@ export default function gameLoop() {
   sel().computerGrid.addEventListener('click', (e) => {
     const pAttack = e.target.className;
     const pResult = p.launchAttack(cBoard, pAttack);
-    console.log('pAttack', pAttack);
     if (!pResult) {
       return;
     }
     const cSquare = sel().computerGrid.querySelector(`.${pAttack}`);
-    console.log(cSquare);
     if (cBoard.getHitStatus(pAttack) === 'hit') {
       cSquare.classList.add('hit');
     } else {
       cSquare.classList.add('miss');
+    }
+    if (cBoard.isGameWon()) {
+      const pName = p.getName();
+      appendWinModal(pName);
     }
     const cAttack = c.decideAttack(pBoard);
     const cResult = c.launchAttack(pBoard, cAttack);
     console.log('cResult', cResult);
     console.log('cAttack', cAttack);
     const pSquare = sel().playerGrid.querySelector(`.${cAttack}`);
-    console.log(pSquare);
-    if (pBoard.getHitStatus(pAttack) === 'hit') {
+    if (pBoard.isGameWon()) {
+      const cName = c.getName();
+      appendWinModal(cName)
+    }
+
+    if (pBoard.getHitStatus(cAttack) === 'hit') {
       pSquare.classList.add('hit');
     } else {
       pSquare.classList.add('miss');

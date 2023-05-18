@@ -10,10 +10,14 @@ export default class Player {
   decideAttack(gameboard) {
     const letters = 'ABCDEFGHIJ';
     const char = letters.charAt(Math.floor(Math.random() * letters.length));
-    const num = Math.floor(Math.random() * letters.length);
+    const num = Math.floor(Math.random() * letters.length + 1);
     if (gameboard.isCoordinateAttacked(`${char + num}`)) {
-      this.decideAttack(gameboard);
+      return this.decideAttack(gameboard);
     }
     return `${char + num}`;
+  }
+
+  getName() {
+    return this.name;
   }
 }
