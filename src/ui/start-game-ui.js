@@ -4,10 +4,15 @@ const newGameModal = bp('div', 'new-game-modal');
 const placeShipsGrid = bp('div', 'place-ships-grid');
 const rotateButton = bp('button', 'rotate-button').addText('Rotate');
 
+const placeShipsGridContainer = bp(
+  'div',
+  'place-ships-grid-container'
+);
+
+const letters = 'ABCDEFGHIJ';
 function writeGrid(parent) {
-  const letters = 'ABCDE';
-  for (let i = 0; i <= 4; i += 1) {
-    for (let j = 1; j <= 5; j += 1) {
+  for (let i = 0; i <= 9; i += 1) {
+    for (let j = 1; j <= 10; j += 1) {
       parent.addChild(bp('div', `${letters[i]}${j}`));
     }
   }
@@ -16,6 +21,24 @@ function writeGrid(parent) {
 writeGrid(placeShipsGrid);
 
 const shipChoiceContainer = bp('div', 'ship-choice-container');
+
+const letterBox = bp('div', 'pre-game-letter-box');
+const numberBox = bp('div', 'pre-game-number-box');
+
+function addLetters(parent) {
+  for (let i = 0; i < letters.length; i += 1) {
+    parent.addChild(bp('div', `${letters[i]}`).addText(`${letters[i]}`));
+  }
+}
+
+function addNumbers(parent) {
+  for (let i = 1; i <= 10; i += 1) {
+    parent.addChild(bp('div', `${i}`).addText(`${i}`));
+  }
+}
+
+addLetters(letterBox);
+addNumbers(numberBox);
 
 function attachShips(name, size) {
   const shipChoice = bp('div', 'ship-choice');
@@ -28,6 +51,11 @@ function attachShips(name, size) {
   shipChoice.addChild(shipSize);
   shipChoiceContainer.addChild(shipChoice);
 }
+
+placeShipsGridContainer
+  .addChild(placeShipsGrid)
+  .addChild(letterBox)
+  .addChild(numberBox);
 
 attachShips('CARRIER', 5);
 attachShips('BATTLESHIP', 4);
@@ -44,7 +72,7 @@ const inputContainer = bp('div', 'input-container')
   .addChild(bp('button', 'input-button').addText('Place Ship'));
 
 newGameModal
-  .addChild(placeShipsGrid)
+  .addChild(placeShipsGridContainer)
   .addChild(rotateButton)
   .addChild(shipChoiceContainer)
   .addChild(inputContainer);

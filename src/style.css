@@ -12,7 +12,8 @@
   margin-bottom: 3rem;
 }
 
-.grid-container {
+.grid-container,
+.place-ships-grid {
   grid-column: 2;
   grid-row: 2;
   border: solid 1px blue;
@@ -24,7 +25,8 @@
   border: solid 1px red;
 }
 
-.letter-box {
+.letter-box,
+.pre-game-letter-box {
   display: grid;
   grid-column: 1;
   grid-row: 2;
@@ -32,13 +34,16 @@
 }
 
 .letter-box > div,
-.number-box > div {
+.number-box > div,
+.pre-game-letter-box > div,
+.pre-game-number-box > div {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.number-box {
+.number-box,
+.pre-game-number-box {
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   grid-column: 2;
@@ -74,12 +79,12 @@
   transform: translate(calc(50vw - 50%), calc(50vh - 50%));
   padding: 1rem;
   display: grid;
-  grid-template-columns: 1fr 1.3fr;
+  grid-template-columns: 3fr 2fr;
 }
 
 .place-ships-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(10, 1fr);
 }
 
 .place-ships-grid > div {
@@ -116,8 +121,18 @@
 .input-container {
   grid-row-start: 2;
   display: flex;
-  gap: .3rem;
+  gap: 0.3rem;
   flex-direction: column;
   width: 3rem;
   align-self: center;
 }
+
+.place-ships-grid-container {
+  display: grid;
+  grid-template-columns: 1fr 10fr;
+  grid-template-rows: 1fr 10fr;
+  width: 12rem; 
+  height: 12rem;
+}
+
+
