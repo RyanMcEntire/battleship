@@ -4,10 +4,7 @@ const newGameModal = bp('div', 'new-game-modal');
 const placeShipsGrid = bp('div', 'place-ships-grid');
 const rotateButton = bp('button', 'rotate-button').addText('Rotate');
 
-const placeShipsGridContainer = bp(
-  'div',
-  'place-ships-grid-container'
-);
+const placeShipsGridContainer = bp('div', 'place-ships-grid-container');
 
 const letters = 'ABCDEFGHIJ';
 function writeGrid(parent) {
@@ -64,6 +61,7 @@ attachShips('SUBMARINE', 3);
 attachShips('DESTROYER', 2);
 
 const inputContainer = bp('div', 'input-container')
+  .addChild(bp('div', 'place-ships-text').addText('Ship Coordinates (ex. "A1")'))
   .addChild(
     bp('input').addAttributes({
       type: 'text',
