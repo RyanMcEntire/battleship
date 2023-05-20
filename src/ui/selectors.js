@@ -6,5 +6,7 @@ export default function sel() {
   return {
     playerGrid: byClass('player-grid-container'),
     computerGrid: byClass('opponent-grid-container'),
+    coordInput: byClass('coord-input'),
+    rotateButton: byClass('rotate-button'),
   };
 }

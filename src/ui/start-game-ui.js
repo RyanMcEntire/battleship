@@ -2,7 +2,11 @@ import bp from 'domweaver';
 
 const newGameModal = bp('div', 'new-game-modal');
 const placeShipsGrid = bp('div', 'place-ships-grid');
-const rotateButton = bp('button', 'rotate-button').addText('Rotate');
+const rotateButton = bp('button', 'rotate-button')
+  .addAttributes({
+    value: 'vertical',
+  })
+  .addText('Rotate');
 
 const placeShipsGridContainer = bp('div', 'place-ships-grid-container');
 
@@ -61,13 +65,18 @@ attachShips('SUBMARINE', 3);
 attachShips('DESTROYER', 2);
 
 const inputContainer = bp('div', 'input-container')
-  .addChild(bp('div', 'place-ships-text').addText('Ship Coordinates (ex. "A1")'))
   .addChild(
-    bp('input').addAttributes({
+    bp('div', 'place-ships-text').addText('Ship Coordinates (ex. "A1")')
+  )
+  .addChild(
+    bp('input', 'coord-input').addAttributes({
       type: 'text',
     })
   )
-  .addChild(bp('button', 'input-button').addText('Place Ship'));
+  .addChild(
+    bp('button', 'input-button')
+      .addText('Place Ship')
+  );
 
 newGameModal
   .addChild(placeShipsGridContainer)

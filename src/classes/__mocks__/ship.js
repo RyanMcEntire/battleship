@@ -1,1 +1,0 @@
-export const mockShip = jest.createMockShip()
