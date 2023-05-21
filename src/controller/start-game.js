@@ -21,9 +21,9 @@ const tentativePlacement = [];
 // when place ship is hit, increase i and
 // gray out class of ship card
 
-export default function gameStart() {
-  const input = sel().coordInput;
-  sel().rotateButton.onclick = toggleRotation();
+let i = 0;
+
+function gamePrep() {
   const shipsPrePlaced = {
     car: 5,
     bat: 4,
@@ -31,10 +31,30 @@ export default function gameStart() {
     sub: 3,
     des: 2,
   };
-  const shipsPostPlaced = {};
+  const input = sel().coordInput;
+  const rotate = sel().rotateButton;
 
-  let i = 0;
+  const shipResults = checkShipClearance(
+    input.value,
+    rotate,
+    shipsPrePlaced[i]
+  );
+
+  tentativePlacement[i] = shipResults;
+  console.log('tentativePlacement', tentativePlacement);
+  i += 1;
   if (i === 4) {
     return placeShipsOnGrids();
   }
+  return {}
+}
+
+function rotateAndPrep() {
+  toggleRotation();
+  gamePrep();
+}
+
+export default function startGame() {
+  sel().rotateButton.onclick = rotateAndPrep;
+  sel().input.onchange = gamePrep;
 }

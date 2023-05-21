@@ -71,6 +71,7 @@ const inputContainer = bp('div', 'input-container')
   .addChild(
     bp('input', 'coord-input').addAttributes({
       type: 'text',
+      value: 'A1'
     })
   )
   .addChild(
