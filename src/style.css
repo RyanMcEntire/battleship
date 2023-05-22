@@ -140,3 +140,7 @@
 .place-ships-grid > .ship-head {
   background-color: red;
 }
+
+.place-ships-grid > .placed {
+  background-color: blue;
+}

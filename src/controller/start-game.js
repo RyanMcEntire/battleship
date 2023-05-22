@@ -12,15 +12,18 @@ function toggleRotation() {
 
 const tentativePlacement = [];
 
-// TODO: add A1 to default value of input
-// add results of checkShipClearance to tentativePlacement
-// add first ship to tentative placement
-// add classes from tentativePlacement to grid squares
-// update squares whenever input.onchange or rotate.onclick
-// when place ship is hit, increase i and
+// TODO: 
 // gray out class of ship card
+// make array from ship choice container children
+// then select with [i]
+
+// TODO:
 
 // TODO: prevent overlapping ships on placement
+
+export function sendShipObjects() {
+return tentativePlacement;
+}
 
 function addShipViews(headCoord, shipCoords) {
   const shipGrid = sel().placeShipsGrid;
@@ -31,6 +34,14 @@ function addShipViews(headCoord, shipCoords) {
   });
   shipGrid.querySelector(`.${headCoord}`).classList.add('ship-head');
   console.log(shipGrid.querySelector(`.${headCoord}`).classList);
+}
+
+function placeShipColor(shipCoords) {
+  const shipGrid = sel().placeShipsGrid;
+
+  shipCoords.forEach((coord) => {
+    shipGrid.querySelector(`.${coord}`).classList.add('placed');
+  });
 }
 
 let i = 0;
@@ -77,6 +88,7 @@ function gamePrep(place) {
   console.log('tentativePlacement', tentativePlacement);
   if (place) {
     i += 1;
+    placeShipColor(shipResults);
   }
 
   // if (i === 4) {
@@ -90,6 +102,7 @@ function rotateAndPrep() {
 }
 
 export default function startGame() {
+  gamePrep();
   sel().rotateButton.addEventListener('click', () => rotateAndPrep());
   sel().coordInput.addEventListener('input', () => gamePrep());
   sel().placeShipButton.addEventListener('click', () => gamePrep('place'));
