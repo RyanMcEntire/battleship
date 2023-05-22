@@ -1,19 +1,14 @@
-function isCoordValid(coord) {
-  const alpha = coord[0];
-  const number = +coord[1];
-  if (!alpha.charAt(0).match(/[a-jA-J]/) || number < 1 || number > 10) {
-    return false;
-  }
-  return true;
+export function isCoordValid(coord) {
+  const pattern = /^[A-J][1-9]$|^[A-J]10$/;
+  return pattern.test(coord);
 }
 
-export default function checkShipClearance(coord, rotation, shipSize) {
+export function checkShipClearance(coord, rotation, shipSize) {
   const letters = 'ABCDEFGHIJ';
   const shipCoords = [];
   if (!isCoordValid(coord)) {
     return false;
   }
-  shipCoords.push(coord);
 
   if (rotation === 'vertical') {
     for (let i = 0; i < shipSize; i += 1) {
@@ -28,8 +23,8 @@ export default function checkShipClearance(coord, rotation, shipSize) {
   const invalidCoords = shipCoords.some(
     (coordinate) =>
       !letters.includes(coordinate[0]) ||
-      coordinate[1] < 1 ||
-      coordinate[1] > 10
+      parseInt(coordinate[1], 10) < 1 ||
+      parseInt(coordinate[1], 10) > 10
   );
   if (invalidCoords) {
     return false;

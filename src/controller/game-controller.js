@@ -64,6 +64,3 @@ export default function gameLoop() {
   });
 }
 
-export function placeShipsOnGrid() {
-  
-}

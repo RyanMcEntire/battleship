@@ -8,5 +8,7 @@ export default function sel() {
     computerGrid: byClass('opponent-grid-container'),
     coordInput: byClass('coord-input'),
     rotateButton: byClass('rotate-button'),
+    placeShipButton: byClass('input-button'),
+    placeShipsGrid: byClass('place-ships-grid'),
   };
 }

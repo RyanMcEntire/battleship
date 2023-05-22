@@ -132,3 +132,11 @@
 
 .place-ships-text {
 }
+
+.place-ships-grid > .ship {
+  background-color: orange;
+}
+
+.place-ships-grid > .ship-head {
+  background-color: red;
+}

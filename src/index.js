@@ -7,5 +7,5 @@ import startGame from './controller/start-game';
 buildPlayerBoard();
 buildOpponentBoard();
 buildNewGameModal()
-gameLoop();
 startGame();
+gameLoop();
