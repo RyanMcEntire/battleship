@@ -31,3 +31,9 @@ export function checkShipClearance(coord, rotation, shipSize) {
   }
   return shipCoords;
 }
+
+export function isOverlapping(coordsArray, placed) {
+  return coordsArray.some((coords) =>
+    placed.some((array) => array[1].includes(coords))
+  );
+}

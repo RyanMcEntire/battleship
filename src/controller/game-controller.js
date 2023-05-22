@@ -4,35 +4,35 @@ import Gameboard from '../classes/gameboard';
 import sel from '../ui/selectors';
 import appendWinModal from '../ui/win-modal';
 
-const ships = {
-  car: ['C3', 'D3', 'E3', 'F3', 'G3'],
-  bat: ['A5', 'A6', 'A7', 'A8'],
-  cru: ['A2', 'B2', 'C2'],
-  sub: ['F6', 'F7', 'F8'],
-  des: ['D7', 'E7'],
-};
+let p;
+let c;
+let pBoard;
+let cBoard;
+console.log('pre-load boards', pBoard, cBoard);
+export function initGame(ships) {
+  console.log('ships', ships);
+  p = new Player('Clowdy');
+  c = new Player('Computer');
 
-const p = new Player('Clowdy');
-const c = new Player('Computer');
+  pBoard = new Gameboard();
+  cBoard = new Gameboard();
+  // let gameOver = false;
 
-const pBoard = new Gameboard();
-const cBoard = new Gameboard();
-// let gameOver = false;
+  ships.forEach((ship) => {
+    pBoard.placeShip(new Ship(ship));
+  });
 
-Object.keys(ships).forEach((shipKey) => {
-  const shipObj = { [shipKey]: ships[shipKey] };
-  pBoard.placeShip(new Ship(shipObj));
-});
-
-Object.keys(ships).forEach((shipKey) => {
-  const shipObj = { [shipKey]: ships[shipKey] };
-  cBoard.placeShip(new Ship(shipObj));
-});
+  ships.forEach((ship) => {
+    cBoard.placeShip(new Ship(ship));
+  });
+  console.log('post-load boards', pBoard, cBoard);
+}
 
 export default function gameLoop() {
   sel().computerGrid.addEventListener('click', (e) => {
     const pAttack = e.target.className;
     const pResult = p.launchAttack(cBoard, pAttack);
+    console.log('cBoard at attack', cBoard);
     if (!pResult) {
       return;
     }
@@ -50,10 +50,11 @@ export default function gameLoop() {
     const cResult = c.launchAttack(pBoard, cAttack);
     console.log('cResult', cResult);
     console.log('cAttack', cAttack);
+    console.log('pAttack', pAttack);
     const pSquare = sel().playerGrid.querySelector(`.${cAttack}`);
     if (pBoard.isGameWon()) {
       const cName = c.getName();
-      appendWinModal(cName)
+      appendWinModal(cName);
     }
 
     if (pBoard.getHitStatus(cAttack) === 'hit') {
@@ -63,4 +64,3 @@ export default function gameLoop() {
     }
   });
 }
-

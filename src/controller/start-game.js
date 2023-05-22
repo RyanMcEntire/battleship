@@ -1,5 +1,10 @@
 import sel from '../ui/selectors';
-import { checkShipClearance, isCoordValid } from './check-ship-placement';
+import {
+  checkShipClearance,
+  isCoordValid,
+  isOverlapping,
+} from './check-ship-placement';
+import gameLoop, { initGame } from './game-controller';
 
 function toggleRotation() {
   const rotate = sel().rotateButton;
@@ -12,7 +17,7 @@ function toggleRotation() {
 
 const tentativePlacement = [];
 
-// TODO: 
+// TODO:
 // gray out class of ship card
 // make array from ship choice container children
 // then select with [i]
@@ -21,19 +26,13 @@ const tentativePlacement = [];
 
 // TODO: prevent overlapping ships on placement
 
-export function sendShipObjects() {
-return tentativePlacement;
-}
-
 function addShipViews(headCoord, shipCoords) {
   const shipGrid = sel().placeShipsGrid;
 
   shipCoords.forEach((coord) => {
-    console.log(shipGrid);
     shipGrid.querySelector(`.${coord}`).classList.add('ship');
   });
   shipGrid.querySelector(`.${headCoord}`).classList.add('ship-head');
-  console.log(shipGrid.querySelector(`.${headCoord}`).classList);
 }
 
 function placeShipColor(shipCoords) {
@@ -56,7 +55,6 @@ function gamePrep(place) {
   };
 
   const allSquares = Array.from(sel().placeShipsGrid.children);
-  console.log(allSquares);
   allSquares.forEach((square) => {
     if (square.classList.contains('ship-head')) {
       square.classList.remove('ship-head');
@@ -67,7 +65,6 @@ function gamePrep(place) {
   });
   const shipsArray = Object.entries(shipsPrePlaced);
   const inputValue = sel().coordInput.value.toUpperCase();
-  console.log('isCoordValid', isCoordValid(inputValue));
   if (!isCoordValid(inputValue)) {
     return;
   }
@@ -78,22 +75,29 @@ function gamePrep(place) {
     rotateValue,
     shipsArray[i][1]
   );
-  if (!shipResults) {
+  console.log('inputValue', inputValue);
+  if (!shipResults || isOverlapping(shipResults, tentativePlacement)) {
+    console.log(
+      'isOverlapping',
+      isOverlapping(shipResults, tentativePlacement)
+    );
     return;
   }
 
   addShipViews(inputValue, shipResults);
 
-  tentativePlacement[i] = [shipsArray[i][0], shipResults];
-  console.log('tentativePlacement', tentativePlacement);
   if (place) {
+    tentativePlacement[i] = [shipsArray[i][0], shipResults];
+    console.log('tentativePlacement', tentativePlacement);
     i += 1;
     placeShipColor(shipResults);
   }
 
-  // if (i === 4) {
-
-  // }
+  if (i === 5) {
+    sel().newGameModal.remove();
+    initGame(tentativePlacement);
+    gameLoop();
+  }
 }
 
 function rotateAndPrep() {

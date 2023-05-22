@@ -1,8 +1,8 @@
 /* eslint-disable prefer-destructuring */
 export default class Ship {
-  constructor(obj) {
-    this.type = Object.keys(obj)[0];
-    this.coords = obj[this.type];
+  constructor(array) {
+    this.type = array[0];
+    this.coords = array[1];
     this.length = this.coords.length;
     this.hp = this.coords.length;
   }
