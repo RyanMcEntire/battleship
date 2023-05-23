@@ -144,3 +144,11 @@
 .place-ships-grid > .placed {
   background-color: blue;
 }
+
+.current-ship {
+  background-color: greenyellow;
+}
+
+.previous-ship {
+  background-color: gainsboro;
+}

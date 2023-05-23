@@ -19,12 +19,8 @@ const tentativePlacement = [];
 
 // TODO:
 // gray out class of ship card
-// make array from ship choice container children
-// then select with [i]
 
 // TODO:
-
-// TODO: prevent overlapping ships on placement
 
 function addShipViews(headCoord, shipCoords) {
   const shipGrid = sel().placeShipsGrid;
@@ -43,6 +39,15 @@ function placeShipColor(shipCoords) {
   });
 }
 
+function shipChoiceUX(i) {
+  const allShips = Array.from(sel().shipChoiceContainer.children);
+  if (i > 0) {
+    allShips[i - 1].classList.remove('current-ship');
+    allShips[i - 1].classList.add('previous-ship');
+  }
+  allShips[i].classList.add('current-ship');
+}
+
 let i = 0;
 
 function gamePrep(place) {
@@ -53,6 +58,8 @@ function gamePrep(place) {
     sub: 3,
     des: 2,
   };
+
+  shipChoiceUX(i);
 
   const allSquares = Array.from(sel().placeShipsGrid.children);
   allSquares.forEach((square) => {

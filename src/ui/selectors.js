@@ -11,5 +11,6 @@ export default function sel() {
     placeShipButton: byClass('input-button'),
     placeShipsGrid: byClass('place-ships-grid'),
     newGameModal: byClass('new-game-modal'),
+    shipChoiceContainer: byClass('ship-choice-container'),
   };
 }
