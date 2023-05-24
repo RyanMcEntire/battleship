@@ -40,9 +40,8 @@ function computerShipLoop() {
   return computerShips;
 }
 
-export function initGame(ships) {
-  console.log('ships', ships);
-  p = new Player('Clowdy');
+export function initGame(ships, playerName) {
+  p = new Player(playerName);
   c = new Player('Computer');
 
   pBoard = new Gameboard();

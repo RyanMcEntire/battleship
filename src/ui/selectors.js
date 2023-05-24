@@ -12,5 +12,6 @@ export default function sel() {
     placeShipsGrid: byClass('place-ships-grid'),
     newGameModal: byClass('new-game-modal'),
     shipChoiceContainer: byClass('ship-choice-container'),
+    playerNameInput: byClass('player-name-input'),
   };
 }

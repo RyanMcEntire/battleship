@@ -96,8 +96,9 @@ function gamePrep(place) {
   }
 
   if (i === 5) {
+    const playerName = sel().playerNameInput.value;
     sel().newGameModal.remove();
-    initGame(tentativePlacement);
+    initGame(tentativePlacement, playerName);
     gameLoop();
   }
 }
