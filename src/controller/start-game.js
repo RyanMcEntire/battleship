@@ -17,11 +17,6 @@ function toggleRotation() {
 
 const tentativePlacement = [];
 
-// TODO:
-// gray out class of ship card
-
-// TODO:
-
 function addShipViews(headCoord, shipCoords) {
   const shipGrid = sel().placeShipsGrid;
 
