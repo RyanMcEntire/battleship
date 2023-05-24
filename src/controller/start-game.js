@@ -40,7 +40,9 @@ function shipChoiceUX(i) {
     allShips[i - 1].classList.remove('current-ship');
     allShips[i - 1].classList.add('previous-ship');
   }
-  allShips[i].classList.add('current-ship');
+  if (i < 5) {
+    allShips[i].classList.add('current-ship');
+  }
 }
 
 let i = 0;
@@ -54,8 +56,6 @@ function gamePrep(place) {
     des: 2,
   };
 
-  shipChoiceUX(i);
-
   const allSquares = Array.from(sel().placeShipsGrid.children);
   allSquares.forEach((square) => {
     if (square.classList.contains('ship-head')) {
@@ -65,6 +65,12 @@ function gamePrep(place) {
       square.classList.remove('ship');
     }
   });
+
+  const firstShip = sel().shipChoiceContainer.firstChild;
+  if (i === 0) {
+    firstShip.classList.add('current-ship');
+  }
+
   const shipsArray = Object.entries(shipsPrePlaced);
   const inputValue = sel().coordInput.value.toUpperCase();
   if (!isCoordValid(inputValue)) {
@@ -92,6 +98,7 @@ function gamePrep(place) {
     tentativePlacement[i] = [shipsArray[i][0], shipResults];
     console.log('tentativePlacement', tentativePlacement);
     i += 1;
+    shipChoiceUX(i);
     placeShipColor(shipResults);
   }
 
@@ -113,4 +120,10 @@ export default function startGame() {
   sel().rotateButton.addEventListener('click', () => rotateAndPrep());
   sel().coordInput.addEventListener('input', () => gamePrep());
   sel().placeShipButton.addEventListener('click', () => gamePrep('place'));
+  sel().coordInput.addEventListener('keyup', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      sel().placeShipButton.click();
+    }
+  });
 }
