@@ -76,7 +76,16 @@ const inputContainer = bp('div', 'input-container')
   )
   .addChild(bp('button', 'input-button').addText('Place Ship'));
 
+const playerNameContainer = bp('div', 'player-name-container')
+  .addChild(bp('div', 'player-name-text').addText('Player Name'))
+  .addChild(
+    bp('input', 'player-name-input').addAttributes({
+      type: 'text',
+    })
+  );
+
 newGameModal
+  .addChild(playerNameContainer)
   .addChild(placeShipsGridContainer)
   .addChild(rotateButton)
   .addChild(shipChoiceContainer)

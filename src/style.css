@@ -97,8 +97,10 @@
 .rotate-button {
   height: 1.5rem;
   width: 4rem;
-  align-self: center;
+  align-self: end;
+  margin-bottom: 1rem;
   justify-self: center;
+  grid-row-start: 2;
 }
 
 .ship-choice {
@@ -116,7 +118,9 @@
 .input-container {
   grid-row-start: 2;
   display: flex;
-  gap: 0.3rem;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  gap: 0.4rem;
   flex-direction: column;
   width: 6rem;
   align-self: center;
@@ -126,8 +130,10 @@
   display: grid;
   grid-template-columns: 1fr 10fr;
   grid-template-rows: 1fr 10fr;
+  grid-column-start: 1;
   width: 12rem;
   height: 12rem;
+  margin-right: 1rem;
 }
 
 .place-ships-text {
